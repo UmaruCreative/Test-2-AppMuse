@@ -113,6 +113,35 @@ body.light .glass-card:hover {
   box-shadow: 0 12px 40px rgba(46, 0, 63, 0.15);
 }
 
+/* Dark Glass Card Styles */
+.glass-card-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+body.light .glass-card-dark {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card-dark:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  transform: translateY(-4px);
+}
+
+body.light .glass-card-dark:hover {
+  background: rgba(0, 0, 0, 0.7);
+  border-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
 /* Enhanced effects Glass card by Claude */
 .featured-image-container {
   overflow: hidden;
@@ -124,7 +153,8 @@ body.light .glass-card:hover {
   filter: brightness(0.9);
 }
 
-.glass-card:hover .featured-image {
+.glass-card:hover .featured-image,
+.glass-card-dark:hover .featured-image {
   filter: brightness(1);
   transform: scale(1.02);
 }
@@ -136,6 +166,51 @@ body.light .glass-card:hover {
 .glass-card:hover {
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-card-dark:hover {
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+/* Demo Image Aspect Ratios */
+.demo-image-rect {
+  aspect-ratio: 16/9;
+  height: auto;
+}
+
+.demo-image-square {
+  aspect-ratio: 1/1;
+  width: 16rem;
+  height: 16rem;
+}
+
+/* Mobile responsive adjustments for demo images */
+@media (max-width: 768px) {
+  .demo-image-rect {
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: auto;
+  }
+  
+  .demo-image-square {
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Profile Section Mobile Positioning */
+@media (max-width: 768px) {
+  .section-ambiance-profile {
+    justify-content: flex-end;
+    padding-bottom: 10vh;
+  }
+  
+  .profile-content {
+    margin-top: auto;
+    padding-top: 60vh;
+  }
 }
 
 /* Glow effects - only in dark mode */
@@ -489,6 +564,21 @@ body.light .newsletter-section {
   border-color: rgba(46, 0, 63, 0.1);
 }
 
+/* Dark Newsletter section styling */
+.newsletter-section-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+body.light .newsletter-section-dark {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
 /* Social media section styling */
 .social-section {
   background: rgba(255, 255, 255, 0.05);
@@ -502,6 +592,21 @@ body.light .newsletter-section {
 body.light .social-section {
   background: rgba(255, 255, 255, 0.8);
   border-color: rgba(46, 0, 63, 0.1);
+}
+
+/* Dark Social media section styling */
+.social-section-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+body.light .social-section-dark {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Pricing table styles */
@@ -555,7 +660,7 @@ body.light .pricing-card:hover {
 }
 
 /* Card tilt effect */
-.glass-card {
+.glass-card, .glass-card-dark {
   transform-style: preserve-3d;
 }
 
@@ -756,7 +861,7 @@ html {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .glass-card {
+  .glass-card, .glass-card-dark {
     margin: 0 1rem;
   }
 
