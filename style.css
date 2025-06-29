@@ -138,9 +138,6 @@ body.light .glass-card:hover {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-
-
-
 /* Glow effects - only in dark mode */
 .glow, .glow-title, .highlight-text, .branding-word {
   color: var(--glow-blue);
@@ -247,7 +244,7 @@ body.light .nav-link:hover {
   text-decoration: underline;
 }
 
-/* Dropdown menu styles */
+/* Desktop Dropdown menu styles */
 .dropdown {
   position: relative;
 }
@@ -340,6 +337,13 @@ body.light .lang-dropdown-btn:hover {
   right: 0;
   left: auto;
   min-width: 120px;
+}
+
+/* Mobile language dropdown toggle */
+.lang-dropdown-menu.mobile-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 /* Theme toggle button */
@@ -548,17 +552,105 @@ body.light .pricing-card:hover {
   transform-style: preserve-3d;
 }
 
-/* Mobile menu theming */
+/* Mobile menu theming and functionality */
 .mobile-menu {
-  background: #2E003F;
+  position: fixed;
+  top: 5rem;
+  left: 0;
+  right: 0;
+  background: rgba(46, 0, 63, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  opacity: 0.8;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  z-index: 40;
+  max-height: calc(100vh - 5rem);
+  overflow-y: auto;
 }
 
 body.light .mobile-menu {
   background: rgba(255, 255, 255, 0.95);
   border-bottom-color: rgba(46, 0, 63, 0.1);
+}
+
+.mobile-menu.visible {
+  transform: translateY(0);
+}
+
+.mobile-menu.hidden {
+  transform: translateY(-100%);
+}
+
+/* Mobile menu content styling */
+.mobile-menu .space-y-4 > div {
+  margin-bottom: 1rem;
+}
+
+/* Main category styling in mobile menu */
+.mobile-menu .font-medium {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--glow-blue);
+  padding: 0.75rem 0 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 0.5rem;
+}
+
+body.light .mobile-menu .font-medium {
+  color: var(--text-light);
+  border-bottom-color: rgba(46, 0, 63, 0.1);
+}
+
+/* Subcategory styling in mobile menu */
+.mobile-menu .nav-link.block.pl-4 {
+  padding-left: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  margin-left: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+body.light .mobile-menu .nav-link.block.pl-4 {
+  color: rgba(46, 0, 63, 0.7);
+  border-left-color: rgba(46, 0, 63, 0.1);
+}
+
+.mobile-menu .nav-link.block.pl-4:hover {
+  color: var(--glow-blue);
+  border-left-color: var(--glow-blue);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.light .mobile-menu .nav-link.block.pl-4:hover {
+  color: var(--text-light);
+  border-left-color: var(--text-light);
+  background: rgba(46, 0, 63, 0.05);
+}
+
+/* Top-level mobile menu links (Pricing, About, Contact) */
+.mobile-menu .nav-link.block:not(.pl-4) {
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.75rem 0;
+  color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light .mobile-menu .nav-link.block:not(.pl-4) {
+  color: rgba(46, 0, 63, 0.9);
+  border-bottom-color: rgba(46, 0, 63, 0.1);
+}
+
+.mobile-menu .nav-link.block:not(.pl-4):hover {
+  color: var(--glow-blue);
+}
+
+body.light .mobile-menu .nav-link.block:not(.pl-4):hover {
+  color: var(--text-light);
 }
 
 /* Typography */
@@ -568,125 +660,6 @@ body.light .mobile-menu {
 
 .font-signature {
   font-family: "Snell Roundhand", "Segoe Script", cursive;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .glass-card {
-    margin: 0 1rem;
-  }
-
-  .nav-link {
-    display: block;
-    padding: 0.5rem 0;
-  }
-
-  /* Dropdown menu styles */
-  .dropdown-menu {
-    position: absolute;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    background: white; /* Add a background for better visibility */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 0.25rem;
-    z-index: 50;
-  }
-
-  .dropdown-menu.open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .dropdown-menu a {
-    padding-left: 2rem;
-    display: block;
-    padding: 0.5rem 1rem;
-    color: #333;
-    text-decoration: none;
-  }
-
-  .dropdown-menu a:hover {
-    background-color: #f0f0f0;
-  }
-
-  /* Mobile menu transitions */
-  .mobile-menu {
-    position: fixed;
-    top: 5rem;
-    left: 0;
-    right: 0;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
-    z-index: 40;
-  }
-
-  .mobile-menu.visible {
-    transform: translateY(0);
-  }
-
-  .mobile-menu.hidden {
-    transform: translateY(-100%);
-  }
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom scrollbar theming */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-body.light ::-webkit-scrollbar-track {
-  background: rgba(46, 0, 63, 0.1);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(49, 207, 255, 0.5);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(49, 207, 255, 0.8);
-}
-
-/* Focus states for accessibility */
-.btn-primary:focus,
-.btn-secondary:focus,
-.input-field:focus,
-.nav-link:focus,
-.lang-link:focus,
-#theme-switch:focus {
-  outline: 2px solid rgba(49, 207, 255, 0.5);
-  outline-offset: 2px;
-}
-
-/* Mobile menu transitions */
-.mobile-menu {
-  position: fixed;
-  top: 5rem;
-  left: 0;
-  right: 0;
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
-  z-index: 40;
-}
-
-.mobile-menu.visible {
-  transform: translateY(0);
-}
-
-.mobile-menu.hidden {
-  transform: translateY(-100%);
 }
 
 /* Hamburger menu styles */
@@ -710,17 +683,6 @@ body.light .hamburger span {
   background: var(--text-light);
 }
 
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
-  
-  .desktop-nav {
-    display: none;
-  }
-}
-
-
 /* For ambiance-performance.html profile section */
 .section-ambiance-profile {
   min-height: 100vh; 
@@ -729,7 +691,7 @@ body.light .hamburger span {
 
 /* Specific background styling for the ambiance-performance page's body */
 body.ambiance-page-background {
-  background-image: url('/assets/images/Ambiance Performance Profile for site.002.png'); /* Ensure this is your desired image path */
+  background-image: url('/assets/images/Ambiance Performance Profile for site.002.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -742,12 +704,12 @@ body.ambiance-page-background::before {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(to bottom, 
-  transparent 5%,rgba(46, 0, 63, 0.9) 25%, /* Start becoming dark fairly quickly */
-  rgba(46, 0, 63, 0.9) 100% /* Solid dark from 25% to the bottom */
+  transparent 5%,rgba(46, 0, 63, 0.9) 25%,
+  rgba(46, 0, 63, 0.9) 100%
 );
   z-index:-1; 
   pointer-events: none;
-  opacity: 0; /* Initially transparent */
+  opacity: 0;
   transition: opacity 0.5s ease-in-out; 
 }
 
@@ -760,17 +722,46 @@ body.ambiance-page-background.gradient-overlay-active::before {
 body.ambiance-page-background.light::before {
   background: linear-gradient(to bottom, 
   transparent 5%, 
-  rgba(100, 100, 100, 0.6) 25%, /* Lighter but more solid shadow */
+  rgba(100, 100, 100, 0.6) 25%,
   rgba(100, 100, 100, 0.6) 100%
-);/* Light grey shadow */
-  /* Opacity is handled by the base rule and the .gradient-overlay-active rule */
+);
 }
 
 body.ambiance-page-background.light.gradient-overlay-active::before {
   opacity: 1; 
 }
 
-/* This @media rule is likely for other things and should remain if it is */
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus states for accessibility */
+.btn-primary:focus,
+.btn-secondary:focus,
+.input-field:focus,
+.nav-link:focus,
+.lang-link:focus,
+#theme-switch:focus {
+  outline: 2px solid rgba(49, 207, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .glass-card {
+    margin: 0 1rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+  
+  .desktop-nav {
+    display: none;
+  }
+}
+
 @media (min-width: 769px) {
   .mobile-nav {
     display: none;

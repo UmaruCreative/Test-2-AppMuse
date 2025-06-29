@@ -15,7 +15,7 @@ class AppMuse {
     this.setupFormHandling();
     this.setupLanguageDropdown();
     this.setupContactSecurity();
-    this.setupAmbiancePageScrollEffects(); // Call the new method
+    this.setupAmbiancePageScrollEffects();
   }
 
   setupAmbiancePageScrollEffects() {
@@ -44,8 +44,10 @@ class AppMuse {
     const sunIcon = themeSwitch?.querySelector('.sun-icon');
     const moonIcon = themeSwitch?.querySelector('.moon-icon');
     if (!themeSwitch) return;
+    
     const savedTheme = localStorage.getItem('theme');
     const isDark = savedTheme === 'dark' || savedTheme === null;
+    
     if (!isDark) {
       body.classList.add('light');
       if (sunIcon && moonIcon) {
@@ -53,6 +55,7 @@ class AppMuse {
         moonIcon.classList.remove('hidden');
       }
     }
+    
     themeSwitch.addEventListener('click', () => {
       const isCurrentlyLight = body.classList.contains('light');
       if (isCurrentlyLight) {
@@ -80,6 +83,10 @@ class AppMuse {
   setupLanguageDropdown() {
     const langLinks = document.querySelectorAll('.lang-link');
     const currentLangSpan = document.getElementById('current-lang');
+    const langDropdownBtn = document.querySelector('.lang-dropdown-btn');
+    const langDropdownMenu = document.querySelector('.lang-dropdown-menu');
+    
+    // Handle language selection
     langLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         const selectedLang = link.getAttribute('data-lang');
@@ -87,8 +94,35 @@ class AppMuse {
           currentLangSpan.textContent = selectedLang;
         }
         localStorage.setItem('selectedLanguage', selectedLang);
+        
+        // Close dropdown on mobile after selection
+        if (langDropdownMenu) {
+          langDropdownMenu.classList.remove('mobile-open');
+        }
       });
     });
+
+    // Mobile language dropdown toggle
+    if (langDropdownBtn && langDropdownMenu) {
+      langDropdownBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Check if we're on mobile (screen width)
+        if (window.innerWidth <= 768) {
+          langDropdownMenu.classList.toggle('mobile-open');
+        }
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!langDropdownBtn.contains(e.target) && !langDropdownMenu.contains(e.target)) {
+          langDropdownMenu.classList.remove('mobile-open');
+        }
+      });
+    }
+    
+    // Load saved language
     const savedLang = localStorage.getItem('selectedLanguage');
     if (savedLang && currentLangSpan) {
       currentLangSpan.textContent = savedLang;
@@ -102,18 +136,21 @@ class AppMuse {
     const phoneNumber = document.getElementById('phone-number');
     const revealAddress = document.getElementById('reveal-address');
     const addressDetails = document.getElementById('address-details');
+    
     if (revealEmail && emailAddress) {
       revealEmail.addEventListener('click', () => {
         revealEmail.classList.add('hidden');
         emailAddress.classList.remove('hidden');
       });
     }
+    
     if (revealPhone && phoneNumber) {
       revealPhone.addEventListener('click', () => {
         revealPhone.classList.add('hidden');
         phoneNumber.classList.remove('hidden');
       });
     }
+    
     if (revealAddress && addressDetails) {
       revealAddress.addEventListener('click', () => {
         revealAddress.classList.add('hidden');
@@ -127,6 +164,7 @@ class AppMuse {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     };
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -134,12 +172,14 @@ class AppMuse {
         }
       });
     }, observerOptions);
+    
     const fadeElements = document.querySelectorAll('.fade-in-element');
     fadeElements.forEach(element => observer.observe(element));
   }
 
   setupCardTiltEffect() {
     const cards = document.querySelectorAll('.glass-card');
+    
     cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -149,9 +189,10 @@ class AppMuse {
         const centerY = rect.height / 2;
         const rotateX = (y - centerY) / centerY * -3;
         const rotateY = (x - centerX) / centerX * 3;
-        // Ensure this line uses actual backticks ` ` not escaped ones.
+        
         card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
         card.style.transition = 'transform 0.2s ease-out';
+        
         if (!document.body.classList.contains('light')) {
           const glowElements = card.querySelectorAll('.glow, .glow-title, .highlight-text');
           glowElements.forEach(glow => {
@@ -159,9 +200,11 @@ class AppMuse {
           });
         }
       });
+      
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0px)';
         card.style.transition = 'transform 0.3s ease-out';
+        
         const glowElements = card.querySelectorAll('.glow, .glow-title, .highlight-text');
         glowElements.forEach(glow => {
           glow.style.textShadow = document.body.classList.contains('light') ? 'none' : '0 0 8px var(--glow-blue)';
@@ -173,70 +216,86 @@ class AppMuse {
   setupMobileMenu() {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.querySelector('.mobile-menu');
-    const dropdownToggle = document.querySelector('.dropdown-toggle');
-    const dropdownMenu = document.querySelector('.dropdown-menu');
+    
     if (!mobileMenuBtn || !mobileMenu) return;
-    mobileMenuBtn.addEventListener('click', () => {
-      if (mobileMenu.classList.contains('hidden')) {
+    
+    // Mobile menu toggle
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const isHidden = mobileMenu.classList.contains('hidden');
+      const spans = mobileMenuBtn.querySelectorAll('span');
+      
+      if (isHidden) {
+        // Open menu
         mobileMenu.classList.remove('hidden');
         mobileMenu.classList.add('visible');
-        const spans = mobileMenuBtn.querySelectorAll('span');
+        
+        // Animate hamburger to X
         spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
         spans[1].style.opacity = '0';
         spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
       } else {
-        mobileMenu.classList.add('hidden');
-        mobileMenu.classList.remove('visible');
-        const spans = mobileMenuBtn.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
+        // Close menu
+        this.closeMobileMenu();
       }
     });
+    
+    // Close menu when clicking on links
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        mobileMenu.classList.remove('visible');
-        const spans = mobileMenuBtn.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
+        this.closeMobileMenu();
       });
     });
-    if (dropdownToggle && dropdownMenu) {
-      dropdownToggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        dropdownMenu.classList.toggle('open');
-      });
-      document.addEventListener('click', (e) => {
-        if (!dropdownMenu.contains(e.target) && !dropdownToggle.contains(e.target)) {
-          dropdownMenu.classList.remove('open');
-        }
-      });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        this.closeMobileMenu();
+      }
+    });
+  }
+
+  closeMobileMenu() {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    
+    if (mobileMenu && mobileMenuBtn) {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('visible');
+      
+      const spans = mobileMenuBtn.querySelectorAll('span');
+      spans[0].style.transform = 'none';
+      spans[1].style.opacity = '1';
+      spans[2].style.transform = 'none';
     }
   }
 
   setupSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
+    
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         const targetId = link.getAttribute('href');
+        
         if (targetId === '#') {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            return;
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
         }
+        
         if (targetId.length > 1 && targetId.startsWith('#')) {
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                e.preventDefault();
-                const offsetTop = targetElement.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            const offsetTop = targetElement.offsetTop - 80;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
         }
       });
     });
@@ -245,12 +304,14 @@ class AppMuse {
   setupFormHandling() {
     const contactForm = document.querySelector('#contact-form');
     const newsletterForms = document.querySelectorAll('form[action*="formspree"]');
+    
     if (contactForm) {
       contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         this.handleContactForm(contactForm);
       });
     }
+    
     newsletterForms.forEach(form => {
       if (form !== contactForm) {
         form.addEventListener('submit', (e) => {
@@ -268,22 +329,27 @@ class AppMuse {
     const email = formData.get('email');
     const message = formData.get('message');
     const captcha = formData.get('captcha');
+    
     if (!firstName || !email || !message) {
       this.showNotification('Please fill in all required fields.', 'error');
       return;
     }
+    
     if (!this.isValidEmail(email)) {
       this.showNotification('Please enter a valid email address.', 'error');
       return;
     }
+    
     if (parseInt(captcha) !== 8) {
       this.showNotification('Please answer the security question correctly.', 'error');
       return;
     }
+    
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
+    
     this.submitToMultipleServices(form, formData)
       .then(() => {
         this.showNotification('Thank you! Your message has been sent.', 'success');
@@ -308,14 +374,17 @@ class AppMuse {
       service: formData.get('service') || '',
       message: formData.get('message')
     };
+    
     let formspreeSuccess = false;
     let googleSheetsSuccess = false;
+    
     try {
       const formspreeResponse = await fetch('https://formspree.io/f/xdovblvn', {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
       });
+      
       if (formspreeResponse.ok) {
         console.log('Successfully submitted to Formspree');
         formspreeSuccess = true;
@@ -327,6 +396,7 @@ class AppMuse {
     } catch (error) {
       console.warn('Formspree submission failed:', error);
     }
+    
     try {
       await fetch('https://script.google.com/macros/s/AKfycbzZcT9on-P094WA0wyyMeQydAeBLqKV9JdlJTI5ZewjS_H-tpqua3licDVukCFVyq_0/exec', {
         method: 'POST',
@@ -339,6 +409,7 @@ class AppMuse {
     } catch (error) {
       console.warn('Google Sheets submission failed:', error);
     }
+    
     if (formspreeSuccess || googleSheetsSuccess) {
       console.log(`Submission results - Formspree: ${formspreeSuccess ? 'Success' : 'Failed'}, Google Sheets: ${googleSheetsSuccess ? 'Success' : 'Failed'}`);
       return Promise.resolve();
@@ -356,6 +427,7 @@ class AppMuse {
   showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     const isLight = document.body.classList.contains('light');
+    
     let typeClasses = '';
     if (type === 'success') {
       typeClasses = isLight ? 'border-green-600 text-green-800 bg-green-50' : 'border-green-400 text-green-200 bg-green-900/20';
@@ -364,13 +436,16 @@ class AppMuse {
     } else {
       typeClasses = isLight ? 'border-purple-600 text-purple-800 bg-purple-50' : 'border-blue-400 text-white bg-blue-900/20';
     }
-    // Ensure backticks are used here for the template literal
+    
     notification.className = `fixed top-24 right-6 z-50 p-4 rounded-lg backdrop-blur-sm max-w-sm transform translate-x-full transition-transform duration-300 ${typeClasses}`;
     notification.textContent = message;
+    
     document.body.appendChild(notification);
+    
     setTimeout(() => {
       notification.style.transform = 'translateX(0)';
     }, 100);
+    
     setTimeout(() => {
       notification.style.transform = 'translateX(100%)';
       setTimeout(() => {
@@ -386,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
   new AppMuse();
 });
 
-// Renamed to avoid conflict with class AppMuse, if this is for global utilities
+// Global utilities
 window.AppMuseGlobal = {
   changeLanguage: (lang) => {
     console.log(`Switching to language: ${lang}`);
@@ -405,6 +480,7 @@ window.AppMuseGlobal = {
     const themeSwitch = document.getElementById('theme-switch');
     const sunIcon = themeSwitch?.querySelector('.sun-icon');
     const moonIcon = themeSwitch?.querySelector('.moon-icon');
+    
     if (theme === 'light') {
       body.classList.add('light');
       localStorage.setItem('theme', 'light');
