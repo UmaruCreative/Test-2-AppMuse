@@ -95,30 +95,59 @@ class AppMuse {
         }
         localStorage.setItem('selectedLanguage', selectedLang);
         
-        // Close dropdown on mobile after selection
+        // Close dropdown after selection
         if (langDropdownMenu) {
           langDropdownMenu.classList.remove('mobile-open');
         }
       });
     });
 
-    // Mobile language dropdown toggle
+    // Language dropdown toggle - works on all screen sizes
     if (langDropdownBtn && langDropdownMenu) {
       langDropdownBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
         
-        // Check if we're on mobile (screen width)
+        // Toggle the dropdown open/closed state
         if (window.innerWidth <= 768) {
+          // Mobile: use mobile-open class
           langDropdownMenu.classList.toggle('mobile-open');
+        } else {
+          // Desktop: toggle visibility directly for immediate response
+          const isCurrentlyVisible = langDropdownMenu.style.opacity === '1' || 
+                                   langDropdownMenu.classList.contains('force-visible');
+          
+          if (isCurrentlyVisible) {
+            langDropdownMenu.classList.remove('force-visible');
+            langDropdownMenu.style.opacity = '0';
+            langDropdownMenu.style.visibility = 'hidden';
+            langDropdownMenu.style.transform = 'translateY(-10px)';
+          } else {
+            langDropdownMenu.classList.add('force-visible');
+            langDropdownMenu.style.opacity = '1';
+            langDropdownMenu.style.visibility = 'visible';
+            langDropdownMenu.style.transform = 'translateY(0)';
+          }
         }
       });
 
       // Close dropdown when clicking outside
       document.addEventListener('click', (e) => {
         if (!langDropdownBtn.contains(e.target) && !langDropdownMenu.contains(e.target)) {
-          langDropdownMenu.classList.remove('mobile-open');
+          // Close for both mobile and desktop
+          langDropdownMenu.classList.remove('mobile-open', 'force-visible');
+          langDropdownMenu.style.opacity = '';
+          langDropdownMenu.style.visibility = '';
+          langDropdownMenu.style.transform = '';
         }
+      });
+
+      // Reset dropdown state on window resize
+      window.addEventListener('resize', () => {
+        langDropdownMenu.classList.remove('mobile-open', 'force-visible');
+        langDropdownMenu.style.opacity = '';
+        langDropdownMenu.style.visibility = '';
+        langDropdownMenu.style.transform = '';
       });
     }
     

@@ -278,6 +278,13 @@ body.light .dropdown-menu {
   transform: translateY(0);
 }
 
+/* Force visible class for manual toggle */
+.dropdown-menu.force-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
 .dropdown-menu a {
   display: block;
   padding: 0.75rem 1rem;
@@ -305,6 +312,13 @@ body.light .dropdown-menu a:hover {
 /* Dark mode glow for dropdown items */
 body:not(.light) .dropdown-menu a:hover {
   text-shadow: 0 0 6px var(--glow-blue);
+}
+
+/* Mobile language dropdown toggle */
+.lang-dropdown-menu.mobile-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 /* Language dropdown styles */
@@ -337,13 +351,6 @@ body.light .lang-dropdown-btn:hover {
   right: 0;
   left: auto;
   min-width: 120px;
-}
-
-/* Mobile language dropdown toggle */
-.lang-dropdown-menu.mobile-open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
 }
 
 /* Theme toggle button */
