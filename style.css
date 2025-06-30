@@ -261,7 +261,7 @@ body.light .article-link.active {
   background: rgba(46, 0, 63, 0.1);
 }
 
-/* Mobile Blog Panel Styles - Vertical Button with Icon on Left */
+/* Mobile Blog Panel Styles - Vertical Button with Icon on Left and Aligned */
 #mobile-blog-list-btn {
   background: var(--glow-blue);
   color: var(--bg-dark);
@@ -312,6 +312,7 @@ body.light #mobile-blog-list-btn {
   width: 14px;
   height: 14px;
   margin-right: 0.5rem;
+  margin-top: -2px; /* Move icon slightly higher to align with text */
   transform: rotate(90deg);
   flex-shrink: 0;
 }
