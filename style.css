@@ -261,12 +261,24 @@ body.light .article-link.active {
   background: rgba(46, 0, 63, 0.1);
 }
 
-/* Mobile Blog Panel Styles */
+/* Mobile Blog Panel Styles - Vertical Button */
 #mobile-blog-list-btn {
   background: var(--glow-blue);
   color: var(--bg-dark);
   border: none;
   box-shadow: 0 4px 12px rgba(49, 207, 255, 0.3);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 1rem 0.5rem;
+  border-radius: 0 0.75rem 0.75rem 0;
+  min-height: 120px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 body.light #mobile-blog-list-btn {
@@ -276,6 +288,20 @@ body.light #mobile-blog-list-btn {
 
 #mobile-blog-list-btn:hover {
   box-shadow: 0 6px 20px rgba(49, 207, 255, 0.4);
+  transform: translateY(-50%) translateX(4px);
+}
+
+#mobile-blog-list-btn .vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+#mobile-blog-list-btn .menu-icon {
+  margin-bottom: 0.5rem;
+  transform: rotate(90deg);
 }
 
 #mobile-blog-panel {
