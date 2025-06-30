@@ -16,6 +16,103 @@ class AppMuse {
     this.setupLanguageDropdown();
     this.setupContactSecurity();
     this.setupAmbiancePageScrollEffects();
+    this.setupBlogFunctionality();
+  }
+
+  setupBlogFunctionality() {
+    const mobileBlogBtn = document.getElementById('mobile-blog-list-btn');
+    const mobileBlogPanel = document.getElementById('mobile-blog-panel');
+    const closeBlogPanel = document.getElementById('close-blog-panel');
+    const mobileOverlay = document.getElementById('mobile-panel-overlay');
+    const articleLinks = document.querySelectorAll('.article-link');
+    const articleCards = document.querySelectorAll('.article-card');
+
+    if (!mobileBlogBtn || !mobileBlogPanel) return;
+
+    // Mobile blog panel toggle
+    mobileBlogBtn.addEventListener('click', () => {
+      this.openBlogPanel();
+    });
+
+    // Close panel button
+    if (closeBlogPanel) {
+      closeBlogPanel.addEventListener('click', () => {
+        this.closeBlogPanel();
+      });
+    }
+
+    // Close panel when clicking overlay
+    if (mobileOverlay) {
+      mobileOverlay.addEventListener('click', () => {
+        this.closeBlogPanel();
+      });
+    }
+
+    // Article link functionality
+    articleLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const articleId = link.getAttribute('data-article');
+        
+        // Update active states
+        articleLinks.forEach(l => l.classList.remove('active'));
+        articleCards.forEach(c => c.classList.remove('active'));
+        
+        link.classList.add('active');
+        const targetCard = document.getElementById(articleId);
+        if (targetCard) {
+          targetCard.classList.add('active');
+          
+          // Scroll to article on desktop, close panel on mobile
+          if (window.innerWidth >= 768) {
+            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            this.closeBlogPanel();
+            setTimeout(() => {
+              targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+          }
+        }
+      });
+    });
+
+    // Close panel on window resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        this.closeBlogPanel();
+      }
+    });
+
+    // Handle escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closeBlogPanel();
+      }
+    });
+  }
+
+  openBlogPanel() {
+    const mobileBlogPanel = document.getElementById('mobile-blog-panel');
+    const mobileOverlay = document.getElementById('mobile-panel-overlay');
+    
+    if (mobileBlogPanel && mobileOverlay) {
+      mobileBlogPanel.classList.add('open');
+      mobileBlogPanel.style.transform = 'translateX(0)';
+      mobileOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+  }
+
+  closeBlogPanel() {
+    const mobileBlogPanel = document.getElementById('mobile-blog-panel');
+    const mobileOverlay = document.getElementById('mobile-panel-overlay');
+    
+    if (mobileBlogPanel && mobileOverlay) {
+      mobileBlogPanel.classList.remove('open');
+      mobileBlogPanel.style.transform = 'translateX(-100%)';
+      mobileOverlay.classList.remove('active');
+      document.body.style.overflow = ''; // Restore scrolling
+    }
   }
 
   setupAmbiancePageScrollEffects() {

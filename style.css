@@ -15,6 +15,9 @@
   /* Sakura colors updated to new theme */
   --sakura: #31CFFF;
   --sakura-light: #5DD9FF;
+  
+  /* Glass dark background for panels */
+  --glass-dark: rgba(46, 0, 63, 0.95);
 }
 
 /* Base theme styles */
@@ -142,6 +145,15 @@ body.light .glass-card-dark:hover {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
+/* Blog-specific glass dark background */
+.bg-glass-dark {
+  background: var(--glass-dark);
+}
+
+body.light .bg-glass-dark {
+  background: rgba(255, 255, 255, 0.95);
+}
+
 /* Enhanced effects Glass card by Claude */
 .featured-image-container {
   overflow: hidden;
@@ -211,6 +223,78 @@ body.light .glass-card-dark:hover {
     margin-top: auto;
     padding-top: 60vh;
   }
+}
+
+/* Blog Layout Styles */
+.article-card {
+  transition: all 0.3s ease;
+}
+
+.article-card.active {
+  border-color: var(--glow-blue);
+  box-shadow: 0 0 20px rgba(49, 207, 255, 0.3);
+}
+
+.article-link {
+  transition: all 0.2s ease;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  margin: -0.5rem;
+}
+
+.article-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.light .article-link:hover {
+  background: rgba(46, 0, 63, 0.05);
+}
+
+.article-link.active {
+  color: var(--glow-blue);
+  background: rgba(49, 207, 255, 0.1);
+  font-weight: 600;
+}
+
+body.light .article-link.active {
+  color: var(--text-light);
+  background: rgba(46, 0, 63, 0.1);
+}
+
+/* Mobile Blog Panel Styles */
+#mobile-blog-list-btn {
+  background: var(--glow-blue);
+  color: var(--bg-dark);
+  border: none;
+  box-shadow: 0 4px 12px rgba(49, 207, 255, 0.3);
+}
+
+body.light #mobile-blog-list-btn {
+  background: var(--text-light);
+  color: var(--bg-light);
+}
+
+#mobile-blog-list-btn:hover {
+  box-shadow: 0 6px 20px rgba(49, 207, 255, 0.4);
+}
+
+#mobile-blog-panel {
+  background: var(--glass-dark);
+  backdrop-filter: blur(20px);
+}
+
+body.light #mobile-blog-panel {
+  background: rgba(255, 255, 255, 0.95);
+  border-right-color: rgba(46, 0, 63, 0.1);
+}
+
+#mobile-blog-panel.open {
+  transform: translateX(0);
+}
+
+#mobile-panel-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Glow effects - only in dark mode */

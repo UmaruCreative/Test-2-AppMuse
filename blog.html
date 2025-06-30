@@ -134,130 +134,237 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center px-6 pt-20">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16 fade-in-element">
-          <h1 class="text-5xl md:text-6xl font-didot font-medium mb-6">
-            Musical <span class="glow-title">Blog</span>
-          </h1>
-          <p class="text-xl md:text-2xl opacity-80 leading-relaxed max-w-3xl mx-auto">
-            Insights, tutorials, and stories from the world of musical composition and performance.
-          </p>
-        </div>
+    <!-- Mobile Blog List Button -->
+    <button id="mobile-blog-list-btn" class="fixed left-4 top-24 z-40 md:hidden bg-glow-blue text-white px-4 py-2 rounded-lg shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105">
+      <div class="flex items-center space-x-2">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"/>
+        </svg>
+        <span class="text-sm font-medium">Articles</span>
+      </div>
+    </button>
 
-        <!-- Blog Posts Grid -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in-element">
-          <!-- Blog Post 1 -->
-          <article class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300">
-            <div class="mb-4">
-              <img src="placeholder.jpg" alt="Blog post image" class="w-full h-48 object-cover rounded-lg opacity-80">
+    <!-- Mobile Blog List Panel -->
+    <div id="mobile-blog-panel" class="fixed inset-y-0 left-0 z-50 w-80 bg-glass-dark backdrop-blur-lg border-r border-white/10 transform -translate-x-full transition-transform duration-300 md:hidden">
+      <div class="flex items-center justify-between p-4 border-b border-white/10">
+        <h3 class="text-lg font-medium glow-title">Articles</h3>
+        <button id="close-blog-panel" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="p-4 overflow-y-auto h-full pb-20">
+        <!-- Mobile Article List Content -->
+        <div class="space-y-6">
+          <!-- 2025/01 -->
+          <div class="border-b border-white/10 pb-4">
+            <h4 class="text-sm font-medium text-glow-blue mb-3">2025/01</h4>
+            <div class="space-y-2">
+              <a href="#article-1" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-1">
+                The Art of Isekai Music Composition
+              </a>
+              <a href="#article-2" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-2">
+                Piano Techniques for Game Scoring
+              </a>
+              <a href="#article-3" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-3">
+                Emotional Storytelling Through Music
+              </a>
             </div>
-            <div class="space-y-3">
-              <div class="text-sm opacity-60">January 15, 2025</div>
-              <h3 class="text-xl font-medium glow-title">The Art of Isekai Music Composition</h3>
-              <p class="opacity-80 text-sm leading-relaxed">
-                Exploring how to create musical landscapes that transport listeners to otherworldly realms through piano composition and arrangement techniques.
-              </p>
-              <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
+          </div>
+          
+          <!-- 2024/12 -->
+          <div class="border-b border-white/10 pb-4">
+            <h4 class="text-sm font-medium text-glow-blue mb-3">2024/12</h4>
+            <div class="space-y-2">
+              <a href="#article-4" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-4">
+                Classical Foundations for Modern Composers
+              </a>
+              <a href="#article-5" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-5">
+                The Philosophy of Musical Expression
+              </a>
+              <a href="#article-6" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-6">
+                Performance Tips for Ambiance Piano
+              </a>
             </div>
-          </article>
-
-          <!-- Blog Post 2 -->
-          <article class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300">
-            <div class="mb-4">
-              <img src="placeholder.jpg" alt="Blog post image" class="w-full h-48 object-cover rounded-lg opacity-80">
-            </div>
-            <div class="space-y-3">
-              <div class="text-sm opacity-60">January 10, 2025</div>
-              <h3 class="text-xl font-medium glow-title">Piano Techniques for Game Scoring</h3>
-              <p class="opacity-80 text-sm leading-relaxed">
-                Learn essential piano techniques and compositional approaches for creating memorable video game soundtracks that enhance gameplay experience.
-              </p>
-              <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
-            </div>
-          </article>
-
-          <!-- Blog Post 3 -->
-          <article class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300">
-            <div class="mb-4">
-              <img src="placeholder.jpg" alt="Blog post image" class="w-full h-48 object-cover rounded-lg opacity-80">
-            </div>
-            <div class="space-y-3">
-              <div class="text-sm opacity-60">January 5, 2025</div>
-              <h3 class="text-xl font-medium glow-title">Emotional Storytelling Through Music</h3>
-              <p class="opacity-80 text-sm leading-relaxed">
-                Discover how to weave emotional narratives into your compositions, creating music that speaks directly to the listener's heart and imagination.
-              </p>
-              <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
-            </div>
-          </article>
-
-          <!-- Blog Post 4 -->
-          <article class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300">
-            <div class="mb-4">
-              <img src="placeholder.jpg" alt="Blog post image" class="w-full h-48 object-cover rounded-lg opacity-80">
-            </div>
-            <div class="space-y-3">
-              <div class="text-sm opacity-60">December 28, 2024</div>
-              <h3 class="text-xl font-medium glow-title">Classical Foundations for Modern Composers</h3>
-              <p class="opacity-80 text-sm leading-relaxed">
-                Understanding classical music theory and how it applies to contemporary composition, bridging traditional techniques with modern creativity.
-              </p>
-              <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
-            </div>
-          </article>
-
-          <!-- Blog Post 5 -->
-          <article class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300">
-            <div class="mb-4">
-              <img src="placeholder.jpg" alt="Blog post image" class="w-full h-48 object-cover rounded-lg opacity-80">
-            </div>
-            <div class="space-y-3">
-              <div class="text-sm opacity-60">December 20, 2024</div>
-              <h3 class="text-xl font-medium glow-title">The Philosophy of Musical Expression</h3>
-              <p class="opacity-80 text-sm leading-relaxed">
-                Exploring the deeper meaning behind musical creation and how composers can infuse their personal philosophy into their artistic works.
-              </p>
-              <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
-            </div>
-          </article>
-
-          <!-- Blog Post 6 -->
-          <article class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300">
-            <div class="mb-4">
-              <img src="placeholder.jpg" alt="Blog post image" class="w-full h-48 object-cover rounded-lg opacity-80">
-            </div>
-            <div class="space-y-3">
-              <div class="text-sm opacity-60">December 15, 2024</div>
-              <h3 class="text-xl font-medium glow-title">Performance Tips for Ambiance Piano</h3>
-              <p class="opacity-80 text-sm leading-relaxed">
-                Master the art of creating atmospheric piano performances that enhance dining experiences and create memorable ambient soundscapes.
-              </p>
-              <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
-            </div>
-          </article>
-        </div>
-
-        <!-- Newsletter Signup -->
-        <div class="glass-card p-8 mt-12 text-center fade-in-element">
-          <h3 class="text-2xl font-medium mb-4 glow-title">Stay Updated</h3>
-          <p class="opacity-80 mb-6">Subscribe to receive our latest blog posts and musical insights directly in your inbox.</p>
-          <form action="https://formspree.io/f/your-id" method="POST" class="max-w-md mx-auto">
-            <div class="flex gap-3">
-              <input 
-                type="email" 
-                name="email" 
-                placeholder="Enter your email address" 
-                class="input-field flex-1"
-                required
-              >
-              <button type="submit" class="btn-primary px-6">Subscribe</button>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+
+    <!-- Mobile Panel Overlay -->
+    <div id="mobile-panel-overlay" class="fixed inset-0 bg-black/50 z-40 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+
+    <!-- Main Content -->
+    <div class="flex min-h-screen pt-20">
+      <!-- Desktop Sidebar -->
+      <aside class="hidden md:block w-80 p-6 border-r border-white/10 bg-glass-dark backdrop-blur-sm">
+        <div class="sticky top-24">
+          <h2 class="text-xl font-medium mb-6 glow-title">Articles</h2>
+          
+          <div class="space-y-6">
+            <!-- 2025/01 -->
+            <div class="border-b border-white/10 pb-4">
+              <h3 class="text-sm font-medium text-glow-blue mb-3">2025/01</h3>
+              <div class="space-y-2">
+                <a href="#article-1" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-1">
+                  The Art of Isekai Music Composition
+                </a>
+                <a href="#article-2" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-2">
+                  Piano Techniques for Game Scoring
+                </a>
+                <a href="#article-3" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-3">
+                  Emotional Storytelling Through Music
+                </a>
+              </div>
+            </div>
+            
+            <!-- 2024/12 -->
+            <div class="border-b border-white/10 pb-4">
+              <h3 class="text-sm font-medium text-glow-blue mb-3">2024/12</h3>
+              <div class="space-y-2">
+                <a href="#article-4" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-4">
+                  Classical Foundations for Modern Composers
+                </a>
+                <a href="#article-5" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-5">
+                  The Philosophy of Musical Expression
+                </a>
+                <a href="#article-6" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-6">
+                  Performance Tips for Ambiance Piano
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="flex-1 px-6 py-12">
+        <div class="max-w-4xl mx-auto">
+          <!-- Hero Section -->
+          <div class="text-center mb-16 fade-in-element">
+            <h1 class="text-5xl md:text-6xl font-didot font-medium mb-6">
+              Musical <span class="glow-title">Blog</span>
+            </h1>
+            <p class="text-xl md:text-2xl opacity-80 leading-relaxed max-w-3xl mx-auto">
+              Insights, tutorials, and stories from the world of musical composition and performance.
+            </p>
+          </div>
+
+          <!-- Blog Posts Grid -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 fade-in-element">
+            <!-- Blog Post 1 -->
+            <article id="article-1" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <div class="mb-4">
+                <img src="https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Piano composition" class="w-full h-48 object-cover rounded-lg opacity-80">
+              </div>
+              <div class="space-y-3">
+                <div class="text-sm opacity-60">January 15, 2025</div>
+                <h3 class="text-xl font-medium glow-title">The Art of Isekai Music Composition</h3>
+                <p class="opacity-80 text-sm leading-relaxed">
+                  Exploring how to create musical landscapes that transport listeners to otherworldly realms through piano composition and arrangement techniques.
+                </p>
+                <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
+              </div>
+            </article>
+
+            <!-- Blog Post 2 -->
+            <article id="article-2" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <div class="mb-4">
+                <img src="https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Game music production" class="w-full h-48 object-cover rounded-lg opacity-80">
+              </div>
+              <div class="space-y-3">
+                <div class="text-sm opacity-60">January 10, 2025</div>
+                <h3 class="text-xl font-medium glow-title">Piano Techniques for Game Scoring</h3>
+                <p class="opacity-80 text-sm leading-relaxed">
+                  Learn essential piano techniques and compositional approaches for creating memorable video game soundtracks that enhance gameplay experience.
+                </p>
+                <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
+              </div>
+            </article>
+
+            <!-- Blog Post 3 -->
+            <article id="article-3" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <div class="mb-4">
+                <img src="https://images.pexels.com/photos/1246437/pexels-photo-1246437.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Emotional music" class="w-full h-48 object-cover rounded-lg opacity-80">
+              </div>
+              <div class="space-y-3">
+                <div class="text-sm opacity-60">January 5, 2025</div>
+                <h3 class="text-xl font-medium glow-title">Emotional Storytelling Through Music</h3>
+                <p class="opacity-80 text-sm leading-relaxed">
+                  Discover how to weave emotional narratives into your compositions, creating music that speaks directly to the listener's heart and imagination.
+                </p>
+                <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
+              </div>
+            </article>
+
+            <!-- Blog Post 4 -->
+            <article id="article-4" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <div class="mb-4">
+                <img src="https://images.pexels.com/photos/1407354/pexels-photo-1407354.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Classical music" class="w-full h-48 object-cover rounded-lg opacity-80">
+              </div>
+              <div class="space-y-3">
+                <div class="text-sm opacity-60">December 28, 2024</div>
+                <h3 class="text-xl font-medium glow-title">Classical Foundations for Modern Composers</h3>
+                <p class="opacity-80 text-sm leading-relaxed">
+                  Understanding classical music theory and how it applies to contemporary composition, bridging traditional techniques with modern creativity.
+                </p>
+                <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
+              </div>
+            </article>
+
+            <!-- Blog Post 5 -->
+            <article id="article-5" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <div class="mb-4">
+                <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Musical philosophy" class="w-full h-48 object-cover rounded-lg opacity-80">
+              </div>
+              <div class="space-y-3">
+                <div class="text-sm opacity-60">December 20, 2024</div>
+                <h3 class="text-xl font-medium glow-title">The Philosophy of Musical Expression</h3>
+                <p class="opacity-80 text-sm leading-relaxed">
+                  Exploring the deeper meaning behind musical creation and how composers can infuse their personal philosophy into their artistic works.
+                </p>
+                <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
+              </div>
+            </article>
+
+            <!-- Blog Post 6 -->
+            <article id="article-6" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <div class="mb-4">
+                <img src="https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ambiance piano" class="w-full h-48 object-cover rounded-lg opacity-80">
+              </div>
+              <div class="space-y-3">
+                <div class="text-sm opacity-60">December 15, 2024</div>
+                <h3 class="text-xl font-medium glow-title">Performance Tips for Ambiance Piano</h3>
+                <p class="opacity-80 text-sm leading-relaxed">
+                  Master the art of creating atmospheric piano performances that enhance dining experiences and create memorable ambient soundscapes.
+                </p>
+                <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Newsletter Signup -->
+          <div class="glass-card p-8 mt-12 text-center fade-in-element">
+            <h3 class="text-2xl font-medium mb-4 glow-title">Stay Updated</h3>
+            <p class="opacity-80 mb-6">Subscribe to receive our latest blog posts and musical insights directly in your inbox.</p>
+            <form action="https://formspree.io/f/your-id" method="POST" class="max-w-md mx-auto">
+              <div class="flex gap-3">
+                <input 
+                  type="email" 
+                  name="email" 
+                  placeholder="Enter your email address" 
+                  class="input-field flex-1"
+                  required
+                >
+                <button type="submit" class="btn-primary px-6">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
 
     <!-- Footer -->
     <footer class="py-12 px-6 border-t border-white/10">
